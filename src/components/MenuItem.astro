@@ -1,0 +1,28 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  description?: string;
+  tag?: string;
+  tagPosition?: 'right' | 'left';
+}
+
+const { name, price, description, tag, tagPosition = 'right' } = Astro.props;
+---
+
+<div class="group border-b border-dashed border-primary/10 pb-6 relative">
+  <div class="flex justify-between items-baseline mb-2">
+    <h3 class="font-headline text-2xl font-bold text-on-surface">{name}</h3>
+    <div class="flex-grow mx-4 border-b border-dotted border-on-surface/10 mb-1.5"></div>
+    <span class="font-bold text-primary text-xl">{price}</span>
+  </div>
+  {description && (
+    <p class="text-on-surface-variant text-xl font-script leading-relaxed">{description}</p>
+  )}
+  {tag && tagPosition === 'right' && (
+    <span class="absolute -right-4 top-4 text-primary font-script text-xl opacity-60">{tag}</span>
+  )}
+  {tag && tagPosition === 'left' && (
+    <span class="absolute -left-6 top-10 text-sketch-red font-script text-xl -rotate-[15deg] px-2 py-0.5 border border-sketch-red/40 rounded-full opacity-70">{tag}</span>
+  )}
+</div>

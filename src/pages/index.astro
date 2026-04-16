@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import MenuItem from '../components/MenuItem.astro';
+import FlourishDivider from '../components/FlourishDivider.astro';
+import Cantina from '../components/Cantina.astro';
+import Footer from '../components/Footer.astro';
+import MobileNav from '../components/MobileNav.astro';
+
+const antipasti = [
+  {
+    name: 'Seppia con carciofi freschi',
+    price: '€15.00',
+    description: "Cottura lenta con carciofi di stagione e un filo d'olio d'oliva delle nostre colline.",
+    tag: 'Novità!',
+    tagPosition: 'right' as const,
+  },
+  {
+    name: 'Gamberi e mazzancolle al vapore',
+    price: '€16.00',
+    description: 'Semplice freschezza servita con una leggera citronette fatta in casa.',
+  },
+  {
+    name: 'Tartare di tonno o salmone',
+    price: '€18.00',
+    description: 'Tagliate al coltello e marinate con zenzero e agrumi del Mediterraneo.',
+  },
+];
+
+const primi = [
+  {
+    name: 'Strozzapreti alla Nancy',
+    price: '€14.00',
+    description: 'Pasta fatta a mano ogni mattina, condita con un saporito sugo bianco di pesce e vongole veraci.',
+    tag: 'Fatto a mano',
+    tagPosition: 'left' as const,
+  },
+  {
+    name: "Passatelli all'Adriatico",
+    price: '€15.00',
+    description: 'Tradizione romagnola reinterpretata con il profumo del nostro mare.',
+  },
+  {
+    name: 'Spaghetti alle vongole',
+    price: '€16.00',
+    description: 'Un classico intramontabile, cucinato con aglio, prezzemolo e vongole freschissime.',
+  },
+];
+
+const secondi = [
+  {
+    name: 'Spiedini misti',
+    price: '€18.00',
+    description: 'Gamberi e calamari gratinati al pane profumato, pronti per essere gustati.',
+  },
+  {
+    name: 'Fritto misto imperiale',
+    price: '€20.00',
+    description: 'Croccante, leggero e abbondante: il vero re della tavola romagnola.',
+    tag: 'Il Nostro Fritto!',
+    tagPosition: 'right' as const,
+  },
+  {
+    name: 'Filetto di orata',
+    price: '€19.00',
+    description: 'In crosta di patate sottili per un cuore morbido e un guscio saporito.',
+  },
+];
+
+const piade = [
+  {
+    name: 'Regina',
+    price: '€8.50',
+    description: 'Crudo, Squacquerone e Rucola fresca',
+    tag: 'Consigliata!',
+    tagPosition: 'right' as const,
+  },
+  {
+    name: 'Raffinata',
+    price: '€9.50',
+    description: 'Salmone e Philadelphia delicata',
+  },
+];
+
+const insalate = [
+  {
+    name: 'Fantasia',
+    price: '€7.50',
+    description: 'Mix di foglie, Mais croccante e Olive',
+  },
+  {
+    name: 'Nancy',
+    price: '€9.00',
+    description: 'Tonno, Uovo sodo e Pomodori ciliegino',
+  },
+];
+
+const antipastiImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDRFF2T_IjJDhwtnwV8GWdTxoX558dfSXfWWpL10NrdVJpNqL1OJnLqVNOYT4u_wGbTbmkpA9-kI4Qov5sfpt2UySnxMp2-kNnWhKvdShqzucMLgQe3u3rXIGE9ZRUi14xYsar_Taak6mcCc2yRQAAcBrPzfShMDSzfg7kaphBWax6_Pd1flkVWVTwv-EJB2SgZabJn7aSvjv5rz5PFkm4_QC0xkBGnCaVBtxudgUpWRFiWByuUwOQfJt4tYUfSpXL9RlNJm_We190';
+const secondiImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBYAfDW8cov0u3oyHCqBrWZgQfmct93F3ba3ZJ5QnOu4PofVQAv-v-JqC3VUYmy5kzVqk9MGhZzNff8BSXTcf457ecHydJGZMVLVJacLhz4xwq6gbSuohE4TIRcjuKjRvKsTfnlUALOI60g3YYHwmwLMEQYdSvPaBm1eGEMSD0DI_DYmjqURkikwF9cy1gUK8MXyhbkS5KMGcTBpcBKR-m_bIM0iS0JU-Z3bJVHSFwgjruqYNm5U7jIODqVC4hDLH4bvRbNxhzecI4';
+---
+
+<Layout>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-6 py-16 relative">
+    <!-- Floating decorative elements -->
+    <div class="absolute top-20 right-0 pointer-events-none opacity-40 mix-blend-multiply">
+      <span class="material-symbols-outlined text-sketch-red text-6xl rotate-12">sunny</span>
+    </div>
+    <div class="absolute top-[40%] left-[-2rem] pointer-events-none opacity-30 mix-blend-multiply hidden lg:block">
+      <span class="material-symbols-outlined text-primary text-8xl -rotate-12">sailing</span>
+    </div>
+
+    <Hero />
+
+    <div class="space-y-32">
+
+      <!-- Antipasti -->
+      <section class="relative" id="Antipasti">
+        <div class="flex items-center gap-4 mb-12">
+          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Antipasti</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-3xl">set_meal</span>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-12 items-start">
+          <div class="flex-1 space-y-10 w-full relative">
+            {antipasti.map((item) => (
+              <MenuItem {...item} />
+            ))}
+          </div>
+
+          <div class="w-full md:w-1/3 flex justify-center md:mt-4 relative">
+            <div class="sketchy-img-container rotate-2 relative">
+              <div class="scrapbook-pin"></div>
+              <img
+                class="w-full h-auto aspect-[4/5] object-cover mix-blend-multiply opacity-90 hand-cut-img"
+                src={antipastiImg}
+                alt="Seppia con carciofi freschi su piatto in ceramica"
+              />
+            </div>
+            <div class="absolute -bottom-6 -left-4 text-sketch-red font-script text-2xl rotate-3 opacity-80 pointer-events-none">
+              Fresco di giornata
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider icon="water_drop" />
+
+      <!-- Primi -->
+      <section class="relative" id="Primi">
+        <div class="flex items-center gap-4 mb-12">
+          <span class="material-symbols-outlined text-primary/40 text-3xl">dinner_dining</span>
+          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Primi</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <div class="hidden md:block relative px-4">
+            <span class="font-script text-sketch-red text-2xl -rotate-6 block">La pasta? La facciamo noi fresca ogni giorno!</span>
+          </div>
+        </div>
+
+        <div class="space-y-10 relative">
+          <div class="absolute -right-12 top-20 opacity-30 mix-blend-multiply pointer-events-none">
+            <span class="material-symbols-outlined text-primary text-6xl">set_meal</span>
+          </div>
+          {primi.map((item) => (
+            <MenuItem {...item} />
+          ))}
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="favorite" iconColor="text-sketch-red" />
+
+      <!-- Secondi -->
+      <section class="relative" id="Secondi">
+        <div class="flex items-center gap-4 mb-12">
+          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Secondi</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-3xl">restaurant</span>
+        </div>
+
+        <div class="flex flex-col md:flex-row-reverse gap-12 items-start">
+          <div class="flex-1 space-y-10 w-full relative">
+            {secondi.map((item) => (
+              <MenuItem {...item} />
+            ))}
+          </div>
+
+          <div class="w-full md:w-1/3 flex justify-center md:mt-12 relative">
+            <div class="sketchy-img-container -rotate-3 relative">
+              <div class="scrapbook-pin" style="background: #005d90"></div>
+              <img
+                class="w-full h-auto aspect-square object-cover hand-cut-img"
+                src={secondiImg}
+                alt="Fritto misto croccante servito in cono di carta con limone"
+              />
+            </div>
+            <div class="absolute -top-10 -right-6 pointer-events-none opacity-20">
+              <span class="material-symbols-outlined text-sketch-red text-6xl">lemon</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="space-y-32">
+
+        <!-- Piade -->
+        <section class="relative" id="Piade">
+          <div class="flex items-center gap-4 mb-12">
+            <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Le Piade</h2>
+            <div class="flex-1 hand-drawn-connector h-4"></div>
+            <div class="relative px-4">
+              <span class="font-script text-sketch-red text-3xl rotate-6 block">La Pida! ❤️</span>
+            </div>
+          </div>
+
+          <ul class="space-y-10 relative">
+            <div class="absolute -left-12 top-0 opacity-40 mix-blend-multiply pointer-events-none hidden md:block">
+              <span class="material-symbols-outlined text-sketch-red text-5xl rotate-[140deg]">subdirectory_arrow_right</span>
+            </div>
+            {piade.map((item) => (
+              <li><MenuItem {...item} /></li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Insalate -->
+        <section class="relative" id="Insalate">
+          <div class="flex items-center gap-4 mb-12">
+            <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Insalate</h2>
+            <div class="flex-1 hand-drawn-connector h-4"></div>
+            <span class="font-script text-sketch-red text-3xl -rotate-3">L'insalèda</span>
+          </div>
+
+          <ul class="space-y-10 relative">
+            <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+              <span class="material-symbols-outlined text-[100px] text-primary">eco</span>
+            </div>
+            {insalate.map((item) => (
+              <li><MenuItem {...item} /></li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Cantina -->
+        <Cantina />
+
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+
+  <MobileNav />
+</Layout>

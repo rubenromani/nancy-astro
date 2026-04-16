@@ -1,0 +1,15 @@
+---
+interface Props {
+  flip?: boolean;
+  icon?: string;
+  iconColor?: string;
+}
+
+const { flip = false, icon = 'water_drop', iconColor = 'text-primary' } = Astro.props;
+---
+
+<div class={`flourish-divider opacity-50 relative ${flip ? 'scale-x-[-1]' : ''}`}>
+  <span class={`absolute ${flip ? 'right-1/4' : 'left-1/2 -translate-x-1/2'} top-0 ${iconColor} opacity-15 pointer-events-none ${flip ? 'rotate-12' : ''}`}>
+    <span class="material-symbols-outlined text-4xl">{icon}</span>
+  </span>
+</div>

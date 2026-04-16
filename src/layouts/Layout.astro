@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Nancy Riccione — Sapori dell\'Adriatico' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,700;0,800;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Caveat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-background text-on-surface font-body selection:bg-secondary-container relative">
+    <!-- Paper grain overlay -->
+    <div class="fixed inset-0 pointer-events-none paper-grain z-[100]"></div>
+
+    <slot />
+
+    <!-- SVG filter for hand-drawn effect -->
+    <svg height="0" style="position:absolute; pointer-events:none;" width="0">
+      <defs>
+        <filter height="120%" id="hand-drawn" width="120%" x="-10%" y="-10%">
+          <feTurbulence baseFrequency="0.02" numOctaves="3" result="noise" type="fractalNoise"></feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="3"></feDisplacementMap>
+        </filter>
+      </defs>
+    </svg>
+  </body>
+</html>

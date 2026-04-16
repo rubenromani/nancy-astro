@@ -1,0 +1,21 @@
+---
+const links = [
+  { href: '#Antipasti', icon: 'star', active: true },
+  { href: '#Primi', icon: 'dinner_dining' },
+  { href: '#Secondi', icon: 'restaurant' },
+  { href: '#Cantina', icon: 'wine_bar' },
+];
+---
+
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 md:hidden z-50">
+  <div class="bg-surface-container-high/95 backdrop-blur-xl px-8 py-4 rounded-full flex gap-10 shadow-2xl border-2 border-dashed border-primary/10">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        class={link.active ? 'text-primary hover:scale-125 transition-transform' : 'text-on-surface/60 hover:text-primary'}
+      >
+        <span class="material-symbols-outlined">{link.icon}</span>
+      </a>
+    ))}
+  </div>
+</div>
