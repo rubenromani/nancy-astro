@@ -1,11 +1,12 @@
 ---
 const navLinks = [
-  { href: '#Antipasti', label: 'Antipasti', active: true },
+  { href: '#Antipasti', label: 'Antipasti' },
   { href: '#Primi', label: 'Primi' },
   { href: '#Secondi', label: 'Secondi' },
   { href: '#Piade', label: 'Piade' },
-  { href: '#Bevande', label: 'Bevande' },
-  { href: '#Cantina', label: 'La Cantina' },
+  { href: '#Insalate', label: 'Insalate' },
+  { href: '#Dolci', label: 'Dolci' },
+  { href: '#Vini', label: 'La Cantina' },
 ];
 ---
 
@@ -14,13 +15,11 @@ const navLinks = [
     Nancy Riccione
   </div>
 
-  <nav class="hidden md:flex gap-8 items-center">
+  <nav class="hidden md:flex gap-6 items-center">
     {navLinks.map((link) => (
       <a
         href={link.href}
-        class={link.active
-          ? 'text-[#005d90] font-bold sketch-underline pb-2 hover:scale-105 transition-transform duration-300'
-          : 'text-[#1f1c0b] opacity-80 hover:text-primary transition-colors'}
+        class="text-[#1f1c0b] opacity-80 hover:text-primary hover:opacity-100 transition-colors text-sm font-bold tracking-wide"
       >
         {link.label}
       </a>
