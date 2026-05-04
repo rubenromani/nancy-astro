@@ -1,8 +1,15 @@
 ---
+import { useTranslations, type Lang } from '../i18n/utils';
+import { DEFAULT_LANG } from '../i18n/ui';
+
+interface Props { lang?: Lang }
+const { lang = DEFAULT_LANG } = Astro.props;
+const t = useTranslations(lang);
+
 const links = [
-  { href: '#Antipasti', icon: 'restaurant', label: 'Cibo' },
-  { href: '#Bevande', icon: 'local_bar', label: 'Bevande' },
-  { href: '#Vini', icon: 'wine_bar', label: 'Cantina' },
+  { href: '#Antipasti', icon: 'restaurant', label: t.mobileNav.food },
+  { href: '#Bevande', icon: 'local_bar', label: t.mobileNav.drinks },
+  { href: '#Vini', icon: 'wine_bar', label: t.mobileNav.wines },
 ];
 ---
 

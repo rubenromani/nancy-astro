@@ -1,0 +1,288 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import MenuItem from '../../components/MenuItem.astro';
+import FlourishDivider from '../../components/FlourishDivider.astro';
+import Cantina from '../../components/Cantina.astro';
+import Footer from '../../components/Footer.astro';
+import {
+  antipasti, primi, secondi, piade, insalate, contorni, piccoli,
+  dolci, frutta, birreBottiglia, birreSpina, bevande, getMenuT,
+  type MenuItem as MItem,
+} from '../../data/menu/structure';
+import { LANGS, type Lang } from '../../i18n/ui';
+import { useTranslations, assetPath } from '../../i18n/utils';
+
+export function getStaticPaths() {
+  return LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params as { lang: Lang };
+const t = useTranslations(lang);
+const m = getMenuT(lang);
+
+function render(items: MItem[]) {
+  return items.map((it) => {
+    const tr = m[it.id] ?? { name: it.id };
+    const tag = it.tag ? t.menu.tags[it.tag] : undefined;
+    return { name: tr.name, description: tr.description, price: it.price, tag, tagPosition: it.tagPosition };
+  });
+}
+
+const headingClass = "font-headline text-2xl sm:text-3xl md:text-4xl font-bold text-primary rotated-heading";
+const subHeadingClass = "font-headline text-xl sm:text-2xl md:text-3xl font-bold text-primary rotated-heading";
+---
+
+<Layout title={t.menu.pageTitle} lang={lang} pathSlug="menu">
+  <Header lang={lang} pathSlug="menu" />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16 relative">
+    <div class="absolute top-20 right-0 pointer-events-none opacity-40 mix-blend-multiply hidden sm:block">
+      <span class="material-symbols-outlined text-sketch-red text-6xl rotate-12">sunny</span>
+    </div>
+    <div class="absolute top-[40%] left-[-2rem] pointer-events-none opacity-30 mix-blend-multiply hidden lg:block">
+      <span class="material-symbols-outlined text-primary text-8xl -rotate-12">sailing</span>
+    </div>
+
+    <Hero lang={lang} />
+
+    <div class="space-y-20 md:space-y-32">
+
+      <section class="relative" id="Antipasti">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.antipasti}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-2xl md:text-3xl">set_meal</span>
+        </div>
+
+        <div class="space-y-8 md:space-y-10 relative">
+          {render(antipasti).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <div class="sketchy-img-container rotate-2 relative w-full md:w-2/3">
+            <div class="scrapbook-pin"></div>
+            <img
+              class="w-full h-auto aspect-[4/3] object-cover mix-blend-multiply opacity-90 hand-cut-img"
+              src={assetPath('img/foto1.jpg')}
+              alt={t.menu.sections.antipasti}
+            />
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider icon="water_drop" />
+
+      <section class="relative" id="Primi">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <span class="material-symbols-outlined text-primary/40 text-2xl md:text-3xl">dinner_dining</span>
+          <h2 class={headingClass}>{t.menu.sections.primi}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <div class="hidden md:block relative px-4">
+            <span class="font-script text-sketch-red text-2xl -rotate-6 block">{t.menu.pastaNote}</span>
+          </div>
+        </div>
+
+        <div class="space-y-8 md:space-y-10 relative">
+          <div class="absolute -right-12 top-20 opacity-30 mix-blend-multiply pointer-events-none hidden md:block">
+            <span class="material-symbols-outlined text-primary text-6xl">set_meal</span>
+          </div>
+          {render(primi).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <div class="sketchy-img-container -rotate-2 relative w-full md:w-2/3">
+            <div class="scrapbook-pin" style="background: #c63737"></div>
+            <img
+              class="w-full h-auto aspect-[4/3] object-cover hand-cut-img"
+              src={assetPath('img/foto2.jpg')}
+              alt={t.menu.sections.primi}
+            />
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="favorite" iconColor="text-sketch-red" />
+
+      <section class="relative" id="Secondi">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.secondi}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-2xl md:text-3xl">restaurant</span>
+        </div>
+
+        <div class="space-y-8 md:space-y-10 relative">
+          {render(secondi).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <div class="sketchy-img-container rotate-1 relative w-full md:w-2/3">
+            <div class="scrapbook-pin" style="background: #30407a"></div>
+            <img
+              class="w-full h-auto aspect-[4/3] object-cover hand-cut-img"
+              src={assetPath('img/foto-secondi.jpg')}
+              alt={t.menu.sections.secondi}
+            />
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider icon="eco" />
+
+      <section class="relative" id="Piade">
+        <div class="flex items-center gap-3 sm:gap-4 mb-6 md:mb-8">
+          <h2 class={headingClass}>{t.menu.sections.piade}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <div class="relative px-2 sm:px-4">
+            <span class="font-script text-sketch-red text-2xl sm:text-3xl rotate-6 block">{t.menu.piadaTagline}</span>
+          </div>
+        </div>
+        <p class="font-script text-on-surface-variant text-2xl sm:text-3xl md:text-4xl mb-10 md:mb-12 -rotate-1 inline-block">
+          {t.menu.piadaIntro}
+        </p>
+
+        <div class="space-y-8 md:space-y-10 relative">
+          {render(piade).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <p class="mt-10 font-headline text-base sm:text-lg md:text-xl font-bold text-primary text-center">
+          {t.menu.piadaPersonalize}
+        </p>
+
+        <div class="mt-12 flex justify-center">
+          <div class="sketchy-img-container rotate-2 relative w-full md:w-2/3">
+            <div class="scrapbook-pin"></div>
+            <img
+              class="w-full h-auto aspect-[4/3] object-cover hand-cut-img"
+              src={assetPath('img/foto4.jpg')}
+              alt={t.menu.sections.piade}
+            />
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="water_drop" />
+
+      <section class="relative" id="Insalate">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.insalate}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="font-script text-sketch-red text-2xl sm:text-3xl -rotate-3">{t.menu.insalateScript}</span>
+        </div>
+
+        <div class="space-y-8 md:space-y-10 relative">
+          {render(insalate).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <p class="mt-10 font-headline text-base sm:text-lg md:text-xl font-bold text-primary text-center">
+          {t.menu.insalateAddPiada}
+        </p>
+
+        <div class="mt-12 flex justify-center">
+          <div class="sketchy-img-container -rotate-2 relative w-full md:w-2/3">
+            <div class="scrapbook-pin" style="background: #c63737"></div>
+            <img
+              class="w-full h-auto aspect-[4/3] object-cover hand-cut-img"
+              src={assetPath('img/foto5.jpg')}
+              alt={t.menu.sections.insalate}
+            />
+          </div>
+        </div>
+      </section>
+
+      <FlourishDivider icon="favorite" iconColor="text-sketch-red" />
+
+      <section class="relative" id="Contorni">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.contorni}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-2xl md:text-3xl">grass</span>
+        </div>
+        <div class="space-y-8 md:space-y-10">
+          {render(contorni).map((item) => <MenuItem {...item} />)}
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="child_care" iconColor="text-secondary" />
+
+      <section class="relative" id="Piccoli">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.piccoli}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="font-script text-sketch-red text-2xl sm:text-3xl rotate-3">🙂</span>
+        </div>
+        <div class="space-y-8 md:space-y-10">
+          {render(piccoli).map((item) => <MenuItem {...item} />)}
+        </div>
+      </section>
+
+      <FlourishDivider icon="icecream" iconColor="text-secondary" />
+
+      <section class="relative" id="Dolci">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.dolci}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="font-script text-sketch-red text-2xl sm:text-3xl -rotate-3">{t.menu.sections.dolci}</span>
+        </div>
+        <div class="space-y-8 md:space-y-10">
+          {render(dolci).map((item) => <MenuItem {...item} />)}
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="water_drop" />
+
+      <section class="relative" id="Frutta">
+        <div class="flex items-center gap-3 sm:gap-4 mb-4 md:mb-6">
+          <h2 class={headingClass}>{t.menu.sections.frutta}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="font-script text-sketch-red text-xl sm:text-2xl rotate-6 block">{t.menu.fruttaSeasonal}</span>
+        </div>
+        <p class="text-on-surface-variant text-sm md:text-base mb-8 md:mb-10 font-body leading-relaxed whitespace-pre-line">
+          {t.menu.fruttaAdds}
+        </p>
+        <div class="space-y-8 md:space-y-10">
+          {render(frutta).map((item) => <MenuItem {...item} />)}
+        </div>
+      </section>
+
+      <FlourishDivider icon="local_bar" iconColor="text-secondary" />
+
+      <section class="relative" id="Bevande">
+        <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-12">
+          <h2 class={headingClass}>{t.menu.sections.bevande}</h2>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-2xl md:text-3xl">local_bar</span>
+        </div>
+
+        <div class="space-y-8 md:space-y-10 mb-12 md:mb-16">
+          {render(bevande).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <div class="flex items-center gap-3 sm:gap-4 mb-4 mt-12 md:mt-16">
+          <h3 class={subHeadingClass}>{t.menu.sections.birre}</h3>
+          <div class="flex-1 hand-drawn-connector h-4"></div>
+          <span class="material-symbols-outlined text-primary/40 text-xl md:text-2xl">sports_bar</span>
+        </div>
+
+        <h4 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-primary/80 mb-2 mt-6 md:mt-8">{t.menu.birreBottiglia}</h4>
+        <p class="text-on-surface-variant text-sm md:text-base mb-6 md:mb-8 font-body leading-relaxed">{t.menu.birreTerritory}</p>
+        <div class="space-y-8 md:space-y-10">
+          {render(birreBottiglia).map((item) => <MenuItem {...item} />)}
+        </div>
+
+        <h4 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-primary/80 mb-4 md:mb-6 mt-10 md:mt-12">{t.menu.birreSpina}</h4>
+        <div class="space-y-8 md:space-y-10">
+          {render(birreSpina).map((item) => <MenuItem {...item} />)}
+        </div>
+      </section>
+
+      <FlourishDivider flip={true} icon="wine_bar" iconColor="text-primary" />
+
+      <Cantina lang={lang} />
+
+    </div>
+
+    <Footer lang={lang} />
+  </main>
+</Layout>

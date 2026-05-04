@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Lang } from '../i18n/utils';
+import { DEFAULT_LANG } from '../i18n/ui';
+
+interface Props { lang?: Lang }
+const { lang = DEFAULT_LANG } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section class="text-center mb-24 relative">
@@ -7,13 +13,13 @@
   </div>
 
   <h1 class="font-headline text-4xl sm:text-6xl md:text-8xl font-extrabold text-primary rotated-heading mb-6 leading-tight tracking-tight">
-    Menu
+    {t.hero.title}
   </h1>
 
   <div class="mt-10 flex justify-center">
     <div class="bg-secondary-container/10 px-8 py-3 rounded-full rotated-label border border-dashed border-secondary/20 flex items-center gap-2">
       <span class="material-symbols-outlined text-secondary text-sm">restaurant_menu</span>
-      <span class="font-body text-secondary font-bold uppercase tracking-wider text-sm sm:text-base">Pasta e piadina le prepariamo noi</span>
+      <span class="font-body text-secondary font-bold uppercase tracking-wider text-sm sm:text-base">{t.hero.tagline}</span>
     </div>
   </div>
 </section>

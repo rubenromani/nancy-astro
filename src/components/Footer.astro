@@ -1,4 +1,10 @@
 ---
+import { useTranslations, type Lang } from '../i18n/utils';
+import { DEFAULT_LANG } from '../i18n/ui';
+
+interface Props { lang?: Lang }
+const { lang = DEFAULT_LANG } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer class="mt-24 md:mt-40 w-full py-12 md:py-16 flex flex-col items-center gap-6 md:gap-8 border-t border-dashed border-[#30407a]/20 relative">
@@ -10,7 +16,7 @@
   <div class="text-center">
     <div class="text-2xl sm:text-3xl font-bold text-[#30407a] mb-3 font-headline italic">Nancy Riccione</div>
     <p class="text-on-surface-variant font-script text-xl sm:text-2xl italic px-4">
-      Seguici sui nostri Social per rimanere sempre aggiornato
+      {t.footer.followUs}
     </p>
   </div>
 

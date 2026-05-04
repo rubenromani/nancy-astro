@@ -1,19 +1,35 @@
 ---
 import '../styles/global.css';
+import { LANGS, type Lang, DEFAULT_LANG } from '../i18n/utils';
 
 interface Props {
   title?: string;
+  lang?: Lang;
+  pathSlug?: string; // e.g. '', 'menu', 'storia' — used for hreflang
 }
 
-const { title = 'Nancy Riccione — Sapori dell\'Adriatico' } = Astro.props;
+const { title = 'Nancy Riccione — Sapori dell\'Adriatico', lang = DEFAULT_LANG, pathSlug = '' } = Astro.props;
+
+const base = (import.meta.env.BASE_URL ?? '/').replace(/\/$/, '');
+const site = (import.meta.env.SITE ?? '') as string;
+const slug = pathSlug ? `/${pathSlug.replace(/^\//, '')}` : '/';
+
+const alternates = LANGS.map((l) => ({
+  lang: l,
+  href: `${site}${base}/${l}${slug === '/' ? '/' : slug}`,
+}));
 ---
 
 <!doctype html>
-<html lang="it">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    {alternates.map((a) => (
+      <link rel="alternate" hreflang={a.lang} href={a.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${site}${base}${slug === '/' ? '/' : slug}`} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
