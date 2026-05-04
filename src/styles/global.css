@@ -22,7 +22,7 @@
   --color-primary-fixed-dim: #94ccff;
   --color-on-tertiary-container: #fff4f3;
   --color-inverse-primary: #94ccff;
-  --color-primary: #005d90;
+  --color-primary: #30407a;
   --color-surface-container-low: #fcf3d8;
   --color-surface-tint: #006399;
   --color-on-primary-container: #f3f7ff;
@@ -135,20 +135,4 @@
   background-repeat: no-repeat;
 }
 
-@media (max-width: 1024px) {
-  h3.font-headline {
-    font-size: 1.25rem !important;
-  }
-  p.font-script {
-    font-size: 1rem !important;
-  }
-}
-
-@media (max-width: 640px) {
-  h3.font-headline {
-    font-size: 1.15rem !important;
-  }
-  p.font-script {
-    font-size: 0.95rem !important;
-  }
-}
+/* Script font kept at the size set on each element so it stays legible on mobile/tablet. */

@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="Informazioni — Nancy Riccione">
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16 relative">
+    <div class="text-center mb-10 md:mb-12">
+      <h1 class="font-headline text-3xl sm:text-5xl md:text-7xl font-extrabold text-primary rotated-heading mb-4">
+        Informazioni
+      </h1>
+      <span class="material-symbols-outlined text-primary/40 text-4xl">schedule</span>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+      <div class="flex-1 space-y-8">
+        <div class="border-b border-dashed border-primary/20 pb-6">
+          <h3 class="font-headline text-xl sm:text-2xl font-bold text-primary mb-2">Orari di apertura</h3>
+          <p class="font-body text-base sm:text-lg">Aperti tutti i giorni dalle <strong>8:00</strong> alle <strong>20:00</strong>.</p>
+          <p class="font-script text-on-surface-variant text-xl sm:text-2xl mt-2">
+            Cucina aperta dalle 12:00 alle 15:30 — tutto il giorno piadine e insalate!
+          </p>
+        </div>
+
+        <div class="border-b border-dashed border-primary/20 pb-6">
+          <h3 class="font-headline text-xl sm:text-2xl font-bold text-primary mb-2">Cena estiva</h3>
+          <p class="font-body text-base sm:text-lg">
+            Da giugno siamo aperti anche per cena solo <strong>venerdì, sabato e domenica</strong>.
+          </p>
+          <p class="font-body text-base sm:text-lg mt-2">
+            Si invita a prenotare per la cena chiamando il
+            <a href="tel:+390541601718" class="text-primary font-bold underline decoration-dashed underline-offset-4">0541-601718</a>.
+          </p>
+        </div>
+
+        <div class="border-b border-dashed border-primary/20 pb-6">
+          <h3 class="font-headline text-xl sm:text-2xl font-bold text-primary mb-2">Pranzo senza prenotazione</h3>
+          <p class="font-body text-base sm:text-lg">
+            Per il pranzo non prendiamo prenotazioni: quando è tutto pieno facciamo una lista d'attesa;
+            ci date il vostro nome e numero di telefono e verrete richiamati appena il vostro tavolo
+            sarà pronto!
+          </p>
+          <p class="font-script text-sketch-red text-xl sm:text-2xl mt-3 -rotate-1 inline-block">
+            Se trovate fila è perché "U'se magna bén" 😉
+          </p>
+        </div>
+
+        <div class="pb-6">
+          <h3 class="font-headline text-xl sm:text-2xl font-bold text-primary mb-2">Asporto per la spiaggia</h3>
+          <p class="font-body text-base sm:text-lg">
+            Ordinate alla cassa e vi daremo un cercapersone che suona appena sarà pronto per il ritiro.
+          </p>
+          <p class="font-script text-on-surface-variant text-xl sm:text-2xl mt-2 italic">
+            (Funziona anche sotto l'ombrellone!)
+          </p>
+        </div>
+      </div>
+
+      <div class="w-full md:w-2/5 flex justify-center md:mt-4">
+        <div class="sketchy-img-container -rotate-2 relative">
+          <div class="scrapbook-pin" style="background: #c63737"></div>
+          <img
+            src={`${base}/img/foto7.jpg`}
+            alt="Nancy Riccione — la nostra location"
+            class="w-full h-auto aspect-[4/5] object-cover hand-cut-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

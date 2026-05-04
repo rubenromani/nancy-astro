@@ -1,32 +1,71 @@
 ---
+interface Props {
+  showLogo?: boolean;
+}
+const { showLogo = true } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const navLinks = [
-  { href: '#Antipasti', label: 'Antipasti' },
-  { href: '#Primi', label: 'Primi' },
-  { href: '#Secondi', label: 'Secondi' },
-  { href: '#Piade', label: 'Piade' },
-  { href: '#Insalate', label: 'Insalate' },
-  { href: '#Dolci', label: 'Dolci' },
-  { href: '#Vini', label: 'La Cantina' },
+  { href: `${base}/storia`, label: 'La nostra storia' },
+  { href: `${base}/menu`, label: 'Menù' },
+  { href: `${base}/aperitivo`, label: 'Aperitivo' },
+  { href: `${base}/info`, label: 'Informazioni' },
 ];
 ---
 
-<header class="flex justify-between items-center w-full px-6 py-4 sticky top-0 z-50 backdrop-blur-md bg-[#fff9ed]/90 border-b border-dashed border-[#005d90]/20">
-  <div class="text-2xl font-bold italic text-[#005d90] font-headline">
-    Nancy Riccione
+<header class="flex justify-between items-center w-full px-4 sm:px-6 py-3 sm:py-4 sticky top-0 z-50 backdrop-blur-md bg-[#fff9ed]/90 border-b border-dashed border-[#30407a]/20">
+  <div class="relative">
+    <button
+      id="nav-toggle"
+      type="button"
+      aria-label="Apri menu di navigazione"
+      class="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity"
+    >
+      <span class="material-symbols-outlined text-3xl">menu</span>
+    </button>
+
+    <nav
+      id="nav-dropdown"
+      class="hidden absolute left-0 top-full mt-2 bg-[#fff9ed] border border-dashed border-[#30407a]/30 rounded-2xl shadow-2xl p-4 min-w-[220px] z-50"
+    >
+      <ul class="flex flex-col gap-2">
+        {navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block px-3 py-2 rounded-lg text-[#1f1c0b] hover:bg-primary/10 hover:text-primary transition-colors font-bold tracking-wide"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   </div>
 
-  <nav class="hidden md:flex gap-6 items-center">
-    {navLinks.map((link) => (
-      <a
-        href={link.href}
-        class="text-[#1f1c0b] opacity-80 hover:text-primary hover:opacity-100 transition-colors text-sm font-bold tracking-wide"
-      >
-        {link.label}
-      </a>
-    ))}
-  </nav>
+  {showLogo ? (
+    <a href={`${base}/`} class="flex items-center">
+      <img src={`${base}/img/logo.png`} alt="Nancy Riccione" class="h-9 sm:h-10 md:h-12 w-auto" />
+    </a>
+  ) : (
+    <div></div>
+  )}
 
-  <div class="md:hidden">
-    <span class="material-symbols-outlined text-primary text-3xl">menu</span>
-  </div>
+  <div class="w-8"></div>
 </header>
+
+<script is:inline>
+  (function () {
+    const toggle = document.getElementById('nav-toggle');
+    const dropdown = document.getElementById('nav-dropdown');
+    if (!toggle || !dropdown) return;
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('hidden');
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target) && !toggle.contains(e.target)) {
+        dropdown.classList.add('hidden');
+      }
+    });
+  })();
+</script>

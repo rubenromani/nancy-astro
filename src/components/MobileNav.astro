@@ -1,19 +1,16 @@
 ---
 const links = [
-  { href: '#Antipasti', icon: 'set_meal' },
-  { href: '#Primi', icon: 'dinner_dining' },
-  { href: '#Secondi', icon: 'restaurant' },
-  { href: '#Piade', icon: 'kebab_dining' },
-  { href: '#Dolci', icon: 'icecream' },
-  { href: '#Vini', icon: 'wine_bar' },
+  { href: '#Antipasti', icon: 'restaurant', label: 'Cibo' },
+  { href: '#Bevande', icon: 'local_bar', label: 'Bevande' },
+  { href: '#Vini', icon: 'wine_bar', label: 'Cantina' },
 ];
 ---
 
 <div class="fixed bottom-8 left-1/2 -translate-x-1/2 md:hidden z-50">
-  <div class="bg-surface-container-high/95 backdrop-blur-xl px-6 py-4 rounded-full flex gap-8 shadow-2xl border-2 border-dashed border-primary/10">
+  <div class="bg-surface-container-high/95 backdrop-blur-xl px-6 py-4 rounded-full flex gap-10 shadow-2xl border-2 border-dashed border-primary/10">
     {links.map((link) => (
-      <a href={link.href} class="text-on-surface/60 hover:text-primary transition-colors">
-        <span class="material-symbols-outlined text-xl">{link.icon}</span>
+      <a href={link.href} aria-label={link.label} class="text-on-surface/60 hover:text-primary transition-colors">
+        <span class="material-symbols-outlined text-2xl">{link.icon}</span>
       </a>
     ))}
   </div>

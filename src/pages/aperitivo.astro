@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const drinks = [
+  { name: 'Aperol Spritz', price: '€7', description: 'Aperol, prosecco, seltz' },
+  { name: 'Spritz Campari', price: '€7', description: 'Campari, prosecco, seltz' },
+  { name: 'Spritz Select', price: '€7', description: 'Select, prosecco, seltz' },
+  { name: 'Spritz Blu', price: '€9', description: 'Blu curaçao, prosecco, martini bianco, seltz' },
+  { name: 'Moskow Mule', price: '€8', description: 'Vodka, ginger beer, zenzero, lime' },
+  { name: 'Negroni', price: '€8', description: 'Gin, martini rosso, bitter Campari' },
+  { name: 'Americano', price: '€8', description: 'Vermouth rosso, bitter Campari, soda' },
+  { name: 'Gin Tonic', price: '€8', description: 'Gin tonic base e acqua tonica — con Gin Premium €10' },
+  { name: 'Hugo', price: '€7', description: 'Prosecco, fior di sambuco, menta, soda' },
+  { name: 'Japanese Ice Tea', price: '€9', description: '4 bianchi, midori, sweet e zucchero' },
+  { name: 'Piña Colada', price: '€10', description: 'Rum bianco, ananas fresco, gelato al cocco' },
+  { name: 'Punch Cubano', price: '€9', description: 'Lime, zucchero, rum barricato, coca' },
+  { name: 'Mojito', price: '€9', description: 'Rum bianco, succo di lime, soda, menta, zucchero di canna' },
+  { name: 'Caipirinha', price: '€8', description: 'Cachaça, lime, zucchero — con maracuja o fragola' },
+  { name: 'Caipiroska', price: '€8', description: 'Vodka, lime, zucchero — con maracuja o fragola' },
+];
+
+const analcolici = [
+  { name: 'Testa clà', price: '€7', description: 'Succo di pesca, succo di melograno, ginger beer, lime' },
+  { name: 'Florida', price: '€7', description: 'Maracuja, succo di pompelmo, arancia e granatina' },
+  { name: 'Virgin Mojito', price: '€7', description: 'Menta, lime, zucchero e lemon soda' },
+  { name: 'Virgin Colada', price: '€8', description: 'Succo di ananas, gelato al cocco e ananas fresco' },
+  { name: 'Bitter rosso / Crodino', price: '€5' },
+];
+
+const birreSpina = [
+  { name: 'Forst Kronen', price: '€4 / €6', description: '5.2% vol. — corposa e dissetante — 20cl / 40cl' },
+];
+
+const birreBottiglia = [
+  { name: 'Amarcord Gradisca', price: '€7', description: '5.2% vol. Lager chiara 50cl — Rimini' },
+  { name: 'Amarcord Volpina', price: '€7', description: '6.5% vol. Red Ale 50cl — Rimini' },
+  { name: 'Beha Euforia', price: '€5', description: '4.3% vol. Session IPA 33cl — Rimini' },
+  { name: 'Beha Kermesse', price: '€5', description: '4.5% vol. Blanche 33cl — Rimini' },
+  { name: 'Moretti 66cl', price: '€6' },
+  { name: 'Weissbier 50cl', price: '€6' },
+  { name: 'Corona, Ceres 33cl', price: '€5' },
+  { name: 'Menabrea, Heineken, Ichnusa non filtrata', price: '€4,5' },
+];
+
+const accent = '#c63737';
+---
+
+<Layout title="Aperitivo — Nancy Riccione">
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16 relative">
+    <div class="text-center mb-10 md:mb-12">
+      <h1 class="font-headline text-3xl sm:text-5xl md:text-7xl font-extrabold rotated-heading mb-4" style={`color: ${accent}`}>
+        Aperitivo
+      </h1>
+      <div class="flex justify-center gap-3">
+        <span class="material-symbols-outlined text-3xl md:text-4xl rotate-6" style={`color: ${accent}`}>local_bar</span>
+        <span class="material-symbols-outlined text-3xl md:text-4xl -rotate-6" style={`color: ${accent}`}>restaurant</span>
+      </div>
+    </div>
+
+    <section
+      class="rounded-[1.5rem] md:rounded-[2.5rem] p-6 sm:p-10 md:p-14 mb-12 md:mb-16 text-center shadow-xl border-2 border-dashed"
+      style={`background: #fbe8e8; border-color: ${accent}`}
+    >
+      <p class="font-headline text-xl sm:text-2xl md:text-3xl font-bold mb-3" style={`color: ${accent}`}>
+        Burdèl! Dalle 16:00
+      </p>
+      <p class="font-body text-base sm:text-lg md:text-2xl leading-relaxed text-on-surface">
+        Con il vostro <strong>drink, vino o analcolico</strong> è incluso il tagliere.
+      </p>
+      <p class="font-script text-lg sm:text-xl md:text-2xl mt-4 italic" style={`color: ${accent}`}>
+        +€1 con le birre per includere il nostro tagliere
+      </p>
+    </section>
+
+    <!-- Drink -->
+    <section class="mb-16 md:mb-20">
+      <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-10">
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-bold rotated-heading" style={`color: ${accent}`}>
+          Drink
+        </h2>
+        <div class="flex-1 hand-drawn-connector h-4"></div>
+        <span class="font-script text-xl sm:text-2xl md:text-3xl -rotate-3" style={`color: ${accent}`}>T'è seda?</span>
+      </div>
+
+      <div class="space-y-6 md:space-y-8">
+        {drinks.map((d) => (
+          <div class="border-b border-dashed pb-4" style={`border-color: ${accent}33`}>
+            <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline gap-x-3 gap-y-1 mb-1">
+              <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-on-surface">{d.name}</h3>
+              <div class="hidden sm:block flex-grow mx-2 md:mx-4 border-b border-dotted border-on-surface/10 mb-1.5"></div>
+              <span class="font-bold text-lg sm:text-xl whitespace-nowrap" style={`color: ${accent}`}>{d.price}</span>
+            </div>
+            {d.description && (
+              <p class="text-on-surface-variant text-xl sm:text-2xl md:text-3xl font-script leading-relaxed">{d.description}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Analcolici -->
+    <section class="mb-16 md:mb-20">
+      <div class="flex items-center gap-3 sm:gap-4 mb-8 md:mb-10">
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-bold rotated-heading" style={`color: ${accent}`}>
+          Analcolici
+        </h2>
+        <div class="flex-1 hand-drawn-connector h-4"></div>
+        <span class="material-symbols-outlined text-3xl md:text-4xl" style={`color: ${accent}`}>local_drink</span>
+      </div>
+
+      <div class="space-y-6 md:space-y-8">
+        {analcolici.map((d) => (
+          <div class="border-b border-dashed pb-4" style={`border-color: ${accent}33`}>
+            <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline gap-x-3 gap-y-1 mb-1">
+              <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-on-surface">{d.name}</h3>
+              <div class="hidden sm:block flex-grow mx-2 md:mx-4 border-b border-dotted border-on-surface/10 mb-1.5"></div>
+              <span class="font-bold text-lg sm:text-xl whitespace-nowrap" style={`color: ${accent}`}>{d.price}</span>
+            </div>
+            {d.description && (
+              <p class="text-on-surface-variant text-xl sm:text-2xl md:text-3xl font-script leading-relaxed">{d.description}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Birre -->
+    <section class="mb-12 md:mb-16">
+      <div class="flex items-center gap-3 sm:gap-4 mb-6 md:mb-8">
+        <h2 class="font-headline text-2xl sm:text-3xl md:text-4xl font-bold rotated-heading" style={`color: ${accent}`}>
+          Birre
+        </h2>
+        <div class="flex-1 hand-drawn-connector h-4"></div>
+        <span class="material-symbols-outlined text-3xl md:text-4xl" style={`color: ${accent}`}>sports_bar</span>
+      </div>
+
+      <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold mb-4 mt-4" style={`color: ${accent}`}>Alla spina</h3>
+      <div class="space-y-6 md:space-y-8 mb-10">
+        {birreSpina.map((d) => (
+          <div class="border-b border-dashed pb-4" style={`border-color: ${accent}33`}>
+            <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline gap-x-3 gap-y-1 mb-1">
+              <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-on-surface">{d.name}</h3>
+              <div class="hidden sm:block flex-grow mx-2 md:mx-4 border-b border-dotted border-on-surface/10 mb-1.5"></div>
+              <span class="font-bold text-lg sm:text-xl whitespace-nowrap" style={`color: ${accent}`}>{d.price}</span>
+            </div>
+            {d.description && (
+              <p class="text-on-surface-variant text-xl sm:text-2xl md:text-3xl font-script leading-relaxed">{d.description}</p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold mb-4 mt-8" style={`color: ${accent}`}>In bottiglia</h3>
+      <p class="font-script text-lg sm:text-xl md:text-2xl mb-6 italic" style={`color: ${accent}`}>
+        Amarcord e Beha — birre del nostro territorio
+      </p>
+      <div class="space-y-6 md:space-y-8">
+        {birreBottiglia.map((d) => (
+          <div class="border-b border-dashed pb-4" style={`border-color: ${accent}33`}>
+            <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline gap-x-3 gap-y-1 mb-1">
+              <h3 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-on-surface">{d.name}</h3>
+              <div class="hidden sm:block flex-grow mx-2 md:mx-4 border-b border-dotted border-on-surface/10 mb-1.5"></div>
+              <span class="font-bold text-lg sm:text-xl whitespace-nowrap" style={`color: ${accent}`}>{d.price}</span>
+            </div>
+            {d.description && (
+              <p class="text-on-surface-variant text-xl sm:text-2xl md:text-3xl font-script leading-relaxed">{d.description}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 md:mt-16 flex justify-center">
+      <div class="sketchy-img-container -rotate-1 relative w-full md:w-2/3">
+        <div class="scrapbook-pin" style={`background: ${accent}`}></div>
+        <img
+          src={`${base}/img/foto8.jpg`}
+          alt="L'aperitivo da Nancy"
+          class="w-full h-auto object-cover hand-cut-img"
+        />
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

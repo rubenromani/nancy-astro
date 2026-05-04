@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+
+<Layout title="La nostra storia — Nancy Riccione">
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16 relative">
+    <div class="text-center mb-10 md:mb-12">
+      <h1 class="font-headline text-3xl sm:text-5xl md:text-7xl font-extrabold text-primary rotated-heading mb-4">
+        La nostra storia
+      </h1>
+      <div class="flex justify-center">
+        <span class="material-symbols-outlined text-sketch-red text-4xl rotate-12">palette</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-12 items-start">
+      <div class="flex-1 prose prose-lg">
+        <p class="font-body text-base sm:text-lg md:text-xl leading-relaxed text-on-surface">
+          La nostra storia comincia più di trent'anni fa, quando Andrea Montebelli aprì il
+          ristorante. Le sue passioni erano la pittura e la storia dell'arte ma riuscì a riflettere
+          il suo amore anche nel mondo della ristorazione. Oggi la sua dedizione verso il Nancy
+          è diventata la nostra; quella di sua moglie Gennj Merli e delle sue figlie, Giorgia e Lisa.
+        </p>
+        <p class="font-body text-base sm:text-lg md:text-xl leading-relaxed text-on-surface mt-6">
+          Attraverso il cibo, cerchiamo di portarvi a tavola tutto l'amore verso ciò che facciamo.
+          Per farlo al meglio prepariamo ogni giorno pasta e piadina in casa, seguendo le ricette
+          della tradizione romagnola e la passione che Andrea ci ha trasmesso, e che ha riflesso
+          anche sulle mura del nostro ristorante, con i suoi dipinti, nel suo essere prima di
+          tutto artista.
+        </p>
+      </div>
+
+      <div class="w-full md:w-2/5 flex justify-center md:mt-4">
+        <div class="sketchy-img-container rotate-2 relative">
+          <div class="scrapbook-pin"></div>
+          <img
+            src={`${base}/img/foto6.jpg`}
+            alt="Andrea Montebelli e la famiglia Nancy"
+            class="w-full h-auto aspect-[4/5] object-cover hand-cut-img"
+          />
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </main>
+</Layout>

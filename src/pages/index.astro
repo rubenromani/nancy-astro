@@ -1,347 +1,58 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import MenuItem from '../components/MenuItem.astro';
-import FlourishDivider from '../components/FlourishDivider.astro';
-import Cantina from '../components/Cantina.astro';
 import Footer from '../components/Footer.astro';
-import MobileNav from '../components/MobileNav.astro';
 
-const antipasti = [
-  { name: 'Antipasto freddo misto pesce', price: '€20' },
-  { name: 'Insalata di mare', price: '€14', description: 'Seppia, gamberi, sedano, carote e lattuga' },
-  { name: 'Tartare di tonno', price: '€17', description: 'Avocado, limone, pepe rosa e salsa all\'aglio di accompagnamento' },
-  { name: 'Alici marinate', price: '€15', description: 'Cipolla caramellata e rucola' },
-  { name: 'Cozze alla tarantina', price: '€15', description: 'Servite con pane tostato' },
-  { name: 'Bresaola, rucola e grana', price: '€14' },
-  { name: 'Prosciutto e melone', price: '€14' },
-  { name: 'Empanadas di pesce o carne (3 pezzi)', price: '€7', description: 'Fatte a mano da noi', tag: 'Fatto a mano!', tagPosition: 'right' as const },
-];
-
-const primi = [
-  { name: 'Strozzapreti ai frutti di mare', price: '€16', description: 'Piatto del Cuore — parte dell\'incasso sarà devoluta a Cuore 21', tag: '♥ del Cuore', tagPosition: 'right' as const },
-  { name: 'Passatelli alla marinara', price: '€16' },
-  { name: 'Spaghetti alle vongole', price: '€14' },
-  { name: 'Tagliatelle al ragù', price: '€12' },
-  { name: 'Tortellini pasticciati', price: '€14', description: 'Panna e ragù' },
-];
-
-const secondi = [
-  { name: 'Tre spiedini gamberi e calamari', price: '€15' },
-  { name: 'Fritto misto', price: '€18', description: 'Gamberi, calamari e verdure', tag: 'Il Nostro Fritto!', tagPosition: 'right' as const },
-  { name: 'Filetto di orata al forno alla mediterranea', price: '€18', description: 'Tempi di attesa lunghi' },
-  { name: 'Cotoletta di pollo con patate fritte', price: '€15' },
-  { name: 'Chiedi il pescato del giorno', price: '€6,5/etto', description: 'Alla griglia' },
-];
-
-const piade = [
-  { name: 'Proteica', price: '€9', description: 'Bresaola, rucola e grana' },
-  { name: 'Completa', price: '€8,5', description: 'Crudo, squacquerone e rucola' },
-  { name: 'Veggy alla griglia', price: '€8,5', description: 'Zucchine, melanzane e peperoni alla griglia' },
-  { name: 'Veggy gratè', price: '€9', description: 'Pomodori, melanzane, zucchine e peperoni gratinati' },
-  { name: 'Controcorrente', price: '€12', description: 'Salmone marinato, squacquerone e rucola' },
-  { name: 'Regina', price: '€12', description: 'Alici marinate, cipolla caramellata e rucola', tag: 'Consigliata!', tagPosition: 'right' as const },
-  { name: 'Raffinata', price: '€12', description: 'Gamberetti, salsa rosa e lattuga' },
-  { name: 'Semplice', price: '€8', description: 'Prosciutto cotto e mozzarella' },
-  { name: 'Fuori luogo', price: '€9', description: 'Cipolla stufata e salsiccia' },
-];
-
-const insalate = [
-  { name: 'Fantasia', price: '€16', description: 'Salmone marinato, avocado, arancia, lattuga, pomodorini, cavolo viola e mandorle tostate' },
-  { name: 'Nancy', price: '€12', description: 'Lattuga, tonno, uova, pomodori, olive nere, mozzarelle e carote' },
-  { name: 'Golosa', price: '€12', description: 'Rucola, radicchio rosso e verde, alici marinate, mozzarella, capperi, carciofi e olive ripiene' },
-  { name: 'Mediterranea', price: '€16', description: 'Carpaccio di polpo, patate lesse, olive taggiasche, rucola, radicchio rosso e cipolla cruda' },
-  { name: 'Ortolana', price: '€9,5', description: 'Lattuga, rucola, carote, radicchio e pomodoro' },
-  { name: 'Delizia', price: '€15', description: 'Rucola, radicchio, grana, mozzarella, gamberetti e pomodorini' },
-  { name: 'Caprese', price: '€14', description: 'Pomodoro e mozzarella di Bufala' },
-  { name: 'Proteica', price: '€9', description: 'Bresaola, rucola e grana' },
-];
-
-const contorni = [
-  { name: 'Piadina fatta in casa', price: '€2' },
-  { name: 'Patatine fritte Dippers', price: '€5' },
-  { name: 'Verdure alla griglia / gratinate', price: '€6 / €7' },
-];
-
-const piccoli = [
-  { name: 'Baby penne al pomodoro', price: '€8,5' },
-  { name: 'Panino con cotoletta di pollo', price: '€6' },
-  { name: 'Ciabatta prosciutto crudo e formaggio', price: '€6' },
-  { name: 'Hamburger', price: '€8', description: 'Pane soffice e 120g carne' },
-  { name: 'Hot dog', price: '€6' },
-];
-
-const dolci = [
-  { name: 'Semifreddo Rocher', price: '€7', description: 'Nocciola con cioccolato' },
-  { name: 'Cheesecake alle fragole', price: '€7' },
-  { name: 'Tartufo nero artigianale', price: '€4,5' },
-  { name: 'Iced caffè', price: '€7', description: 'Gelato con caffè, panna montata e cacao' },
-  { name: 'Piadina con Nutella', price: '€5' },
-  { name: 'Coppa di gelato piccola / media', price: '€4,5 / €6' },
-  { name: 'Gelato affogato al caffè', price: '€4' },
-  { name: 'Sorbetto al limone / caffè', price: '€4' },
-];
-
-const frutta = [
-  { name: 'Macedonia piccola / grande', price: '€6,5 / €8,5' },
-  { name: 'Fetta di cocomero', price: '€6' },
-  { name: 'Cocomero a pezzi', price: '€4' },
-  { name: 'Porzione di ananas', price: '€6' },
-  { name: 'Porzione di melone', price: '€7' },
-  { name: 'Coppa di fragole', price: '€6' },
-  { name: 'Banana Split', price: '€8' },
-  { name: 'Yogurt', price: '€2' },
-];
-
-const birre = [
-  { name: 'Amarcord Gradisca', price: '€7', description: '5.2% vol. Lager chiara 50cl — Rimini' },
-  { name: 'Amarcord Volpina', price: '€7', description: '6.5% vol. Red Ale 50cl — Rimini' },
-  { name: 'Beha Euforia', price: '€5', description: '4.3% vol. Session IPA 33cl — Rimini' },
-  { name: 'Beha Kermesse', price: '€5', description: '4.5% vol. Blanche 33cl — Rimini' },
-  { name: 'Forst Kronen', price: '€4 / €6', description: '5.2% vol. 20cl / 40cl' },
-  { name: 'Moretti 66cl', price: '€6' },
-  { name: 'Weissbier 50cl', price: '€6' },
-  { name: 'Corona, Ceres 33cl', price: '€5' },
-  { name: 'Menabrea, Heineken, Ichnusa non filtrata 33cl', price: '€4,5' },
-];
-
-const bevande = [
-  { name: 'Acqua microfiltrata 0,75l', price: '€2,5' },
-  { name: 'Bibite alla spina piccola / media', price: '€4 / €4,5', description: 'Coca-Cola, Sprite' },
-];
-
-const antipastiImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDRFF2T_IjJDhwtnwV8GWdTxoX558dfSXfWWpL10NrdVJpNqL1OJnLqVNOYT4u_wGbTbmkpA9-kI4Qov5sfpt2UySnxMp2-kNnWhKvdShqzucMLgQe3u3rXIGE9ZRUi14xYsar_Taak6mcCc2yRQAAcBrPzfShMDSzfg7kaphBWax6_Pd1flkVWVTwv-EJB2SgZabJn7aSvjv5rz5PFkm4_QC0xkBGnCaVBtxudgUpWRFiWByuUwOQfJt4tYUfSpXL9RlNJm_We190';
-const secondiImg = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBYAfDW8cov0u3oyHCqBrWZgQfmct93F3ba3ZJ5QnOu4PofVQAv-v-JqC3VUYmy5kzVqk9MGhZzNff8BSXTcf457ecHydJGZMVLVJacLhz4xwq6gbSuohE4TIRcjuKjRvKsTfnlUALOI60g3YYHwmwLMEQYdSvPaBm1eGEMSD0DI_DYmjqURkikwF9cy1gUK8MXyhbkS5KMGcTBpcBKR-m_bIM0iS0JU-Z3bJVHSFwgjruqYNm5U7jIODqVC4hDLH4bvRbNxhzecI4';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <Layout>
-  <Header />
+  <Header showLogo={false} />
 
-  <main class="max-w-4xl mx-auto px-6 py-16 relative">
-    <!-- Floating decorative elements -->
-    <div class="absolute top-20 right-0 pointer-events-none opacity-40 mix-blend-multiply">
-      <span class="material-symbols-outlined text-sketch-red text-6xl rotate-12">sunny</span>
-    </div>
-    <div class="absolute top-[40%] left-[-2rem] pointer-events-none opacity-30 mix-blend-multiply hidden lg:block">
-      <span class="material-symbols-outlined text-primary text-8xl -rotate-12">sailing</span>
+  <main class="max-w-6xl mx-auto px-6 py-12 md:py-16">
+    <div class="flex flex-col items-center mb-8 md:mb-12">
+      <img src={`${base}/img/logo.png`} alt="Nancy Riccione" class="h-24 sm:h-32 md:h-44 w-auto" />
     </div>
 
-    <Hero />
+    <div class="md:hidden flex justify-center mb-8">
+      <a
+        href={`${base}/menu`}
+        class="bg-[#fff9ed] border-2 border-dashed border-primary text-primary font-headline text-2xl sm:text-3xl font-bold px-8 py-4 rounded-full shadow-2xl hover:bg-primary hover:text-white transition-colors rotate-[-2deg]"
+      >
+        Vai al Menù
+      </a>
+    </div>
 
-    <div class="space-y-32">
-
-      <!-- ── ANTIPASTI ── -->
-      <section class="relative" id="Antipasti">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Antipasti</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="material-symbols-outlined text-primary/40 text-3xl">set_meal</span>
+    <div class="relative">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 items-stretch">
+        <div class="sketchy-img-container rotate-1 relative">
+          <div class="scrapbook-pin"></div>
+          <img
+            src={`${base}/img/foto7.jpg`}
+            alt="Nancy Riccione — la nostra location"
+            class="w-full aspect-[4/5] object-cover hand-cut-img"
+          />
         </div>
-
-        <div class="flex flex-col md:flex-row gap-12 items-start">
-          <div class="flex-1 space-y-10 w-full relative">
-            {antipasti.map((item) => <MenuItem {...item} />)}
-          </div>
-
-          <div class="w-full md:w-1/3 flex justify-center md:mt-4 relative">
-            <div class="sketchy-img-container rotate-2 relative">
-              <div class="scrapbook-pin"></div>
-              <img
-                class="w-full h-auto aspect-[4/5] object-cover mix-blend-multiply opacity-90 hand-cut-img"
-                src={antipastiImg}
-                alt="Antipasto di mare fresco"
-              />
-            </div>
-            <div class="absolute -bottom-6 -left-4 text-sketch-red font-script text-2xl rotate-3 opacity-80 pointer-events-none">
-              Fresco di giornata
-            </div>
-          </div>
+        <div class="sketchy-img-container -rotate-1 relative">
+          <div class="scrapbook-pin" style="background: #c63737"></div>
+          <img
+            src={`${base}/img/foto9.jpg`}
+            alt="Nancy Riccione"
+            class="w-full aspect-[4/5] object-cover hand-cut-img"
+          />
         </div>
-      </section>
+      </div>
 
-      <FlourishDivider icon="water_drop" />
-
-      <!-- ── PRIMI ── -->
-      <section class="relative" id="Primi">
-        <div class="flex items-center gap-4 mb-12">
-          <span class="material-symbols-outlined text-primary/40 text-3xl">dinner_dining</span>
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Primi</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <div class="hidden md:block relative px-4">
-            <span class="font-script text-sketch-red text-2xl -rotate-6 block">La pasta? La facciamo noi fresca ogni giorno!</span>
-          </div>
-        </div>
-
-        <div class="space-y-10 relative">
-          <div class="absolute -right-12 top-20 opacity-30 mix-blend-multiply pointer-events-none">
-            <span class="material-symbols-outlined text-primary text-6xl">set_meal</span>
-          </div>
-          {primi.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider flip={true} icon="favorite" iconColor="text-sketch-red" />
-
-      <!-- ── SECONDI ── -->
-      <section class="relative" id="Secondi">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Secondi</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="material-symbols-outlined text-primary/40 text-3xl">restaurant</span>
-        </div>
-
-        <div class="flex flex-col md:flex-row-reverse gap-12 items-start">
-          <div class="flex-1 space-y-10 w-full relative">
-            {secondi.map((item) => <MenuItem {...item} />)}
-          </div>
-
-          <div class="w-full md:w-1/3 flex justify-center md:mt-12 relative">
-            <div class="sketchy-img-container -rotate-3 relative">
-              <div class="scrapbook-pin" style="background: #005d90"></div>
-              <img
-                class="w-full h-auto aspect-square object-cover hand-cut-img"
-                src={secondiImg}
-                alt="Fritto misto croccante con limone"
-              />
-            </div>
-            <div class="absolute -top-10 -right-6 pointer-events-none opacity-20">
-              <span class="material-symbols-outlined text-sketch-red text-6xl">lemon</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <FlourishDivider icon="eco" />
-
-      <!-- ── PIADE ── -->
-      <section class="relative" id="Piade">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Le Piade</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <div class="relative px-4">
-            <span class="font-script text-sketch-red text-3xl rotate-6 block">La Pida! ❤️</span>
-          </div>
-        </div>
-        <p class="font-script text-on-surface-variant text-xl mb-8 -rotate-1 inline-block">Piada fatta in casa da noi come da tradizione :)</p>
-
-        <div class="absolute -left-12 top-0 opacity-40 mix-blend-multiply pointer-events-none hidden md:block">
-          <span class="material-symbols-outlined text-sketch-red text-5xl rotate-[140deg]">subdirectory_arrow_right</span>
-        </div>
-        <div class="space-y-10 relative">
-          {piade.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider flip={true} icon="water_drop" />
-
-      <!-- ── INSALATE ── -->
-      <section class="relative" id="Insalate">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Insalate</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="font-script text-sketch-red text-3xl -rotate-3">L'insalèda</span>
-        </div>
-
-        <div class="space-y-10 relative">
-          <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
-            <span class="material-symbols-outlined text-[100px] text-primary">eco</span>
-          </div>
-          {insalate.map((item) => <MenuItem {...item} />)}
-          <p class="font-script text-on-surface-variant text-xl italic mt-4">+ Aggiungi la nostra piada fatta in casa — <span class="font-bold text-primary">€2</span></p>
-        </div>
-      </section>
-
-      <FlourishDivider icon="favorite" iconColor="text-sketch-red" />
-
-      <!-- ── CONTORNI ── -->
-      <section class="relative" id="Contorni">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Contorni</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="material-symbols-outlined text-primary/40 text-3xl">grass</span>
-        </div>
-        <div class="space-y-10">
-          {contorni.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider flip={true} icon="child_care" iconColor="text-secondary" />
-
-      <!-- ── PER I PIÙ PICCOLI ── -->
-      <section class="relative" id="Piccoli">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Per i più piccoli</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="font-script text-sketch-red text-3xl rotate-3">🙂</span>
-        </div>
-        <div class="space-y-10">
-          {piccoli.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider icon="icecream" iconColor="text-secondary" />
-
-      <!-- ── DOLCI ── -->
-      <section class="relative" id="Dolci">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Dolci</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="font-script text-sketch-red text-3xl -rotate-3">Che dolcezza!</span>
-        </div>
-        <p class="font-script text-on-surface-variant text-xl mb-8 italic">Aggiungi gelato +€2 / panna montata +€1</p>
-        <div class="space-y-10">
-          {dolci.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider flip={true} icon="water_drop" />
-
-      <!-- ── FRUTTA ── -->
-      <section class="relative" id="Frutta">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Frutta</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="font-script text-sketch-red text-2xl rotate-6 block">Secondo stagione</span>
-        </div>
-        <div class="space-y-10">
-          {frutta.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider icon="local_bar" iconColor="text-secondary" />
-
-      <!-- ── BEVANDE & BIRRE ── -->
-      <section class="relative" id="Bevande">
-        <div class="flex items-center gap-4 mb-12">
-          <h2 class="font-headline text-4xl font-bold text-primary rotated-heading">Bevande</h2>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="material-symbols-outlined text-primary/40 text-3xl">local_bar</span>
-        </div>
-
-        <div class="space-y-10 mb-16">
-          {bevande.map((item) => <MenuItem {...item} />)}
-        </div>
-
-        <div class="flex items-center gap-4 mb-12 mt-16">
-          <h3 class="font-headline text-3xl font-bold text-primary rotated-heading">Birre</h3>
-          <div class="flex-1 hand-drawn-connector h-4"></div>
-          <span class="material-symbols-outlined text-primary/40 text-2xl">sports_bar</span>
-        </div>
-        <div class="space-y-10">
-          {birre.map((item) => <MenuItem {...item} />)}
-        </div>
-      </section>
-
-      <FlourishDivider flip={true} icon="wine_bar" iconColor="text-primary" />
-
-      <!-- ── CANTINA / VINI ── -->
-      <Cantina />
-
+      <div class="hidden md:flex absolute inset-0 items-center justify-center pointer-events-none px-4">
+        <a
+          href={`${base}/menu`}
+          class="pointer-events-auto bg-[#fff9ed] border-2 border-dashed border-primary text-primary font-headline text-4xl lg:text-5xl font-bold px-12 lg:px-16 py-6 lg:py-7 rounded-full shadow-2xl hover:bg-primary hover:text-white transition-colors rotate-[-2deg]"
+        >
+          Vai al Menù
+        </a>
+      </div>
     </div>
 
     <Footer />
   </main>
-
-  <MobileNav />
 </Layout>
