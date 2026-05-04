@@ -90,13 +90,13 @@ const categories: WineCategory[] = [
         <ul class="space-y-3 max-w-2xl">
           {cat.items.map((item) => (
             <li class="border-b border-white/10 pb-2">
-              <div class="flex flex-wrap sm:flex-nowrap justify-between items-baseline gap-x-3 gap-y-1">
-                <span class="font-headline text-base sm:text-lg md:text-xl font-bold">{item.name}</span>
-                <div class="hidden sm:block flex-grow border-b border-dotted border-white/20 mb-1.5 shrink"></div>
-                <span class="font-bold text-secondary-container whitespace-nowrap">{item.price}</span>
+              <div class="flex flex-nowrap justify-between items-baseline gap-x-3">
+                <span class="font-headline text-base sm:text-lg md:text-xl font-bold min-w-0 wrap-break-word">{item.name}</span>
+                <div class="hidden sm:block grow border-b border-dotted border-white/20 mb-1.5"></div>
+                <span class="font-bold text-secondary-container whitespace-nowrap shrink-0 text-right">{item.price}</span>
               </div>
               {item.note && (
-                <p class="text-white/80 text-sm md:text-base mt-1 font-body lowercase">{item.note}</p>
+                <p class="text-white/80 text-sm md:text-base mt-1 font-body">{item.note}</p>
               )}
             </li>
           ))}

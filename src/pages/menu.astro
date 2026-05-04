@@ -329,8 +329,11 @@ const subHeadingClass = "font-headline text-xl sm:text-2xl md:text-3xl font-bold
           <div class="flex-1 hand-drawn-connector h-4"></div>
           <span class="font-script text-sketch-red text-xl sm:text-2xl rotate-6 block">Secondo stagione</span>
         </div>
-        <p class="font-script text-on-surface-variant text-xl sm:text-2xl md:text-3xl mb-8 md:mb-10 italic">
-          Aggiungi qui: +€2 gelato &nbsp;·&nbsp; +€1 panna montata &nbsp;·&nbsp; +€2 yogurt
+        <p class="text-on-surface-variant text-sm md:text-base mb-8 md:mb-10 font-body leading-relaxed"> 
+          Aggiungi:<br>
+          +€2 gelato<br> 
+          +€1 panna montata<br>
+          +€2 yogurt
         </p>
         <div class="space-y-8 md:space-y-10">
           {frutta.map((item) => <MenuItem {...item} />)}
@@ -358,12 +361,12 @@ const subHeadingClass = "font-headline text-xl sm:text-2xl md:text-3xl font-bold
         </div>
 
         <h4 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-primary/80 mb-2 mt-6 md:mt-8">In bottiglia</h4>
-        <p class="font-script text-on-surface-variant text-xl sm:text-2xl md:text-3xl mb-6 md:mb-8 italic">Amarcord e Beha — birre del nostro territorio</p>
+        <p class="text-on-surface-variant text-sm md:text-base mb-6 md:mb-8 font-body leading-relaxed">Amarcord e Beha — birre del nostro territorio</p>
         <div class="space-y-8 md:space-y-10">
           {birreBottiglia.map((item) => <MenuItem {...item} />)}
         </div>
 
-        <h4 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-primary/80 mb-4 md:mb-6 mt-10 md:mt-12">Birra alla spina</h4>
+        <h4 class="font-headline text-lg sm:text-xl md:text-2xl font-bold text-primary/80 mb-4 md:mb-6 mt-10 md:mt-12">Alla spina</h4>
         <div class="space-y-8 md:space-y-10">
           {birreSpina.map((item) => <MenuItem {...item} />)}
         </div>
